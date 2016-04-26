@@ -5,5 +5,4 @@ module PagedMedia::PagedWorkBehavior
   included do
     property :author, predicate: ::RDF::DC.creator, multiple: false
   end
-     
 end
