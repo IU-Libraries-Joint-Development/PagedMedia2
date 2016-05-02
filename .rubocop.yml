@@ -1,0 +1,4 @@
+# RuboCop configuraiton file
+
+Style/ClassAndModuleChildren:
+  Enabled: false
