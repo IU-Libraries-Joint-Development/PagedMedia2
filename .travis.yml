@@ -1,9 +1,18 @@
 language: ruby
+cache: bundler
+sudo: false
 rvm:
-  - "2.2.1"
+  - 2.3.0
   
-before_script: "bundle install; bundle exec spring binstub --all; bundle exec spring; bundle exec rake db:migrate; bundle exec rake tmp:create"
-script: "bundle exec rake ci"
+before_script:
+  - jdk_switcher use oraclejdk8
+  - bundle install
+  - bundle exec spring binstub --all
+  - bundle exec spring
+  - bundle exec rake db:migrate
+  - bundle exec rake tmp:create
+script:
+  - bundle exec rake ci
 
 branches:
   only:

@@ -37,7 +37,6 @@ gem 'curation_concerns'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
-
 end
 
 group :development do
@@ -45,31 +44,21 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  #gem 'spring'
+  gem 'spring'
 end
 
 
 gem 'rsolr', '~> 1.0.6'
+gem 'globalid'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
 group :development, :test do
   gem 'rspec-rails'
-  gem 'jettywrapper'
+  gem 'fcrepo_wrapper'
+  gem 'solr_wrapper', '>= 0.3'
+  gem "factory_girl_rails"
   # Rubygems version of ammeter has circular dependency problem so get gem from Github with fix
   gem "ammeter", git: "https://github.com/alexrothenberg/ammeter.git"
 end
 
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
 
-gem 'globalid'
-group :development, :test do
-end
-
-group :development, :test do
-  gem 'fcrepo_wrapper'
-end
-
-group :development, :test do
-end
