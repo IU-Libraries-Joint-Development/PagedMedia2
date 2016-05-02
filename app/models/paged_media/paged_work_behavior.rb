@@ -4,7 +4,7 @@ module PagedMedia::PagedWorkBehavior
   include Hydra::Works::WorkBehavior
 
   included do
-    property :creator, predicate: ::RDF::DC.creator, multiple: false
-    # property :author, predicate: ::RDF::DC.creator, multiple: false
+    property :creator, predicate: ::RDF::DC.creator, multiple: true
+    #property :author, predicate: ::RDF::DC.creator, multiple: false
   end
 end
