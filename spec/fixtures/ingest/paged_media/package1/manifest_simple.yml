@@ -1,0 +1,29 @@
+---
+paged_work:
+  title:
+  - Simple Title 1
+  creator:
+  - Simple Author 1
+  depositor: user@example.com
+  edit_users:
+  - user@example.com
+  visibility: open
+  ordered_members:
+  - file_set:
+      depositor: user@example.com
+      edit_users:
+        - user@example.com
+      title: 
+        - Simple File Set 1
+  - file_set:
+      depositor: user@example.com
+      edit_users:
+        - user@example.com
+      title: 
+        - Simple File Set 2
+  - file_set:
+      depositor: user@example.com
+      edit_users:
+        - user@example.com
+      title: 
+        - Simple File Set 3

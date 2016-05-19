@@ -1,0 +1,38 @@
+---
+paged_work:
+  title:
+  - Nested Title 1
+  creator:
+  - Nested Author 1
+  depositor: user@example.com
+  edit_users:
+  - user@example.com
+  visibility: open
+  ordered_members:
+  - container:
+      title: Nested Container 1
+      ordered_members:
+      - file_set:
+          depositor: user@example.com
+          edit_users:
+          - user@example.com
+          title: 
+          - Nested File Set 1
+      - container:
+          title: Nested Container 2
+          ordered_members:
+          - file_set:
+              depositor: user@example.com
+              edit_users:
+              - user@example.com
+              title: 
+              - Nested File Set 2
+  - container:
+      title: Nested Container 3
+      ordered_members:
+      - file_set:
+          depositor: user@example.com
+          edit_users:
+          - user@example.com
+          title:
+          - Nested File Set 3

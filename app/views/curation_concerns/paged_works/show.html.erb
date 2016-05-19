@@ -13,9 +13,9 @@
 
 <ul>
 <% @members.each do |member| %>
-  <% model_name = member['has_model_ssim'][0].downcase %>
+  <% model_name = member.class.to_s.tableize %>
   <li>
-    <%= link_to member['title_tesim'].first.to_s, eval("main_app.curation_concerns_#{model_name}_path('" + member['id'] + "')") %>
+    <%= link_to member.title.first.to_s, eval("main_app.curation_concerns_#{model_name}_path('" + member.id + "')") %>
   </li>
 <% end %>
 </ul>
