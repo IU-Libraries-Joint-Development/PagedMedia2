@@ -24,7 +24,7 @@ module PagedMedia
         return Dir.glob(ingest_root + "*").select { |f| File.directory?(f) }
       end
       def Helpers.ingest_user
-        @ingest_user ||= FactoryGirl.build :user
+        @ingest_user ||= FactoryGirl.create :user
       end
       def Helpers.objects_from_hash(objects_hash, subdir)
         objects_hash.inject([]) do |results_array, (object_class, attributes)|
@@ -34,7 +34,7 @@ module PagedMedia
             case att
             when 'file'
               file_path = "#{subdir}/content/#{val}"
-              object.add_file open(file_path), { path: file_path }
+              Hydra::Works::UploadFileToFileSet.call(page, File.open(file_path))
             when 'ordered_members'
               val.each do |member_hash|
                 Helpers.objects_from_hash(member_hash, subdir).each do |member|
