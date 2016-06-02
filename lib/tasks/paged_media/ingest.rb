@@ -26,7 +26,7 @@ module PagedMedia
       def Helpers.ingest_user
         @ingest_user ||= FactoryGirl.create :user
       end
-      def Helpers.objects_from_hash(objects_hash, subdir)
+      def Helpers.objects_from_hash(objects_hash, subdir, parent=nil)
         objects_hash.inject([]) do |results_array, (object_class, attributes)|
           object = object_class.to_s.classify.constantize.new
           object.apply_depositor_metadata(Helpers.ingest_user) if object.respond_to? :apply_depositor_metadata
@@ -34,11 +34,14 @@ module PagedMedia
             case att
             when 'file'
               file_path = "#{subdir}/content/#{val}"
-              Hydra::Works::UploadFileToFileSet.call(page, File.open(file_path))
+              actor = CurationConcerns::FileSetActor.new(object, Helpers.ingest_user)
+              #visibility check excludes Containers, which are broken for create_metadata call
+              actor.create_metadata(parent) if parent && parent.respond_to?(:visibility)
+              actor.create_content(File.open(file_path))
             when 'ordered_members'
               val.each do |member_hash|
-                Helpers.objects_from_hash(member_hash, subdir).each do |member|
-                  object.ordered_members << member
+                Helpers.objects_from_hash(member_hash, subdir, object).each do |member|
+                  object.ordered_members << member unless object.ordered_members.to_a.include?(member)
                 end
               end
             else
