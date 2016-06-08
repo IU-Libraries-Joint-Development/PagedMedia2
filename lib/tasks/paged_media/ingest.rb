@@ -34,7 +34,7 @@ module PagedMedia
             case att
             when 'file'
               file_path = "#{subdir}/content/#{val}"
-              Hydra::Works::UploadFileToFileSet.call(page, File.open(file_path))
+              Hydra::Works::UploadFileToFileSet.call(object, File.open(file_path))
             when 'ordered_members'
               val.each do |member_hash|
                 Helpers.objects_from_hash(member_hash, subdir).each do |member|
