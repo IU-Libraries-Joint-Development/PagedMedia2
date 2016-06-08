@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'a container of a paged work' do
   let(:blank_container) {Container.new}
   let(:container) {FactoryGirl.create :container}

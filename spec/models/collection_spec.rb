@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Collection do
   let(:collection) {FactoryGirl.create :collection}
   let(:complete_collection) {FactoryGirl.create :complete_collection}

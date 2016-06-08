@@ -1,0 +1,32 @@
+---
+paged_work:
+  title:
+  - Nested Title 1
+  creator:
+  - Nested Author 1
+  visibility: open
+  ordered_members:
+  - container:
+      title: Nested Container 1
+      ordered_members:
+      - file_set:
+          visibility: open
+          title: 
+          - Nested File Set 1
+          file: page01.png
+      - container:
+          title: Nested Container 2
+          ordered_members:
+          - file_set:
+              visibility: open
+              title: 
+              - Nested File Set 2
+              file: page02.png
+  - container:
+      title: Nested Container 3
+      ordered_members:
+      - file_set:
+          visibility: open
+          title:
+          - Nested File Set 3
+          file: page03.png

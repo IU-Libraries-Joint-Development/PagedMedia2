@@ -62,3 +62,5 @@ bower.json
 # Ignore test coverage results
 /coverage
 
+# Ignore vim swap files
+*.swp

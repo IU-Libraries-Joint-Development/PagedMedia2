@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe FileSet do
   let(:page) {FactoryGirl.create :page}
 

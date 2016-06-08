@@ -1,5 +1,6 @@
 require 'rspec/core'
 require 'rspec/core/rake_task'
+require './lib/tasks/paged_media/ingest'
 
 namespace :paged_media do
   # Pass arguments to rspec via ENV variables
@@ -23,6 +24,33 @@ namespace :paged_media do
         end
       end
     end
+  end
+
+  desc 'Run console (in wrappers)'
+  task :console do
+    FcrepoWrapper.wrap(port: 8984, enable_jms: false) do |fc|
+      SolrWrapper.wrap(port: 8983, verbose: true) do |solr|
+        solr.with_collection name: 'hydra-development', dir: File.join(Rails.root, 'solr', 'config') do
+          sh('rails c')
+        end
+      end
+    end
+  end
+
+  desc 'Run server (in wrappers)'
+  task :server do
+    FcrepoWrapper.wrap(port: 8984, enable_jms: false) do |fc|
+      SolrWrapper.wrap(port: 8983, verbose: true) do |solr|
+        solr.with_collection name: 'hydra-development', dir: File.join(Rails.root, 'solr', 'config') do
+          sh('rails s')
+        end
+      end
+    end
+  end
+
+  desc 'Run ingest'
+  task :ingest => :environment do
+    PagedMedia::Ingest::Tasks.ingest
   end
 
 end

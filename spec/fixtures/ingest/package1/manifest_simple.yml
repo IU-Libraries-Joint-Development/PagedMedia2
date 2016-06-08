@@ -1,0 +1,23 @@
+---
+paged_work:
+  title:
+  - Simple Title 1
+  creator:
+  - Simple Author 1
+  visibility: open
+  ordered_members:
+  - file_set:
+      visibility: open
+      title: 
+        - Simple File Set 1
+      file: page01.png
+  - file_set:
+      visibility: open
+      title: 
+        - Simple File Set 2
+      file: page02.png
+  - file_set:
+      visibility: open
+      title: 
+        - Simple File Set 3
+      file: page03.png

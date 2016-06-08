@@ -1,6 +1,3 @@
-require 'spec_helper'
-require 'rails_helper'
-
 require 'generators/paged_media/work/work_generator'
 
 describe PagedMedia::WorkGenerator, :type => :generator do

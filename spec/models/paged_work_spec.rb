@@ -1,7 +1,5 @@
 # Generated via
 #  `rails generate curation_concerns:work PagedWork`
-require 'rails_helper'
-
 describe PagedWork do
   let(:paged_work) {FactoryGirl.create :paged_work}
   let(:complete_paged_work) {FactoryGirl.create :complete_paged_work}
