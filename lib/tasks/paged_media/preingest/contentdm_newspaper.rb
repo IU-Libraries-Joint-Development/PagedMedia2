@@ -1,6 +1,11 @@
+# Preingest for contentDM newspapers
 module PagedMedia
   module PreIngest
     module ContentdmNewspaper
+      # Find all files that are ready for preingest
+      #
+      # @param [Dir] dir to search in
+      # @return [Files] preingest files
       def ContentdmNewspaper.preingest(dir)
         Dir.glob(dir + '/*').select { |f| File.directory?(f) }.each do |subdir|
           puts "Looking in: #{subdir}"
@@ -10,21 +15,28 @@ module PagedMedia
             puts "XML file: #{xml_file}"
             xml_content = File.open(xml_file).read
             xml = Nokogiri::XML(xml_content)
-            ContentdmNewspaper.preingest_file(xml_file, xml)
+            self.preingest_file(xml_file, xml)
           end
         end
       end
+      # Create a single issue/newpaper array to be added to collection
+      #
+      # @param [XML_Object] record xml node to parse
+      # @return [Hash] issue to be added
       def ContentdmNewspaper.add_newspaper(record)
         issue = {}
         issue['newspaper'] = {}
         issue['newspaper']['title'] = record.xpath('title').map(&:content)
         issue['newspaper']['visibility'] = 'open'
         issue['newspaper']['creator'] = record.xpath('publisher').map(&:content)
-        #issue['newspaper']['ordered_members'] = []
-        pages = ContentdmNewspaper.add_pages(record.xpath('structure'))
+        pages = self.add_pages(record.xpath('structure'))
         issue['newspaper']['ordered_members'] = pages
         return issue
       end
+      # Create pages array to be added to issue/newspaper
+      #
+      # @param [XML_Object] pages_xml to parse
+      # @return [Array] of pages to add to issue/newspaper
       def ContentdmNewspaper.add_pages(pages_xml)
         pages = []
         pages_xml.xpath('page').each do |page_xml|
@@ -32,17 +44,28 @@ module PagedMedia
           page['file_set'] = {}
           page['file_set']['title'] = page_xml.xpath('pagetitle').map(&:content)
           page['file_set']['visibility'] = 'open'
-          #files = {}
-          #page_xml.xpath('pagefile').each do |file_xml|
-            #file_type = file_xml.xpath('pagefiletype').text
-          #end
           pages << page
         end
         return pages
       end
-      def ContentdmNewspaper.download_content()
+      # Create array of files to add to page
+      #
+      # @param [XML_Object] page_xml node to parse
+      # @return [Array] of files to add to page
+      def ContentdmNewspaper.add_files(page_xml)
+        # TODO - Will add URL to pull in files (page image, thumbnail, extracted text)
+        files[] = []
+        page_xml.xpath('pagefile').each do |pagefile_xml|
 
+        end
+        return files
       end
+      # Create manifext file from preingested data
+      # for contentDM newspapers export
+      #
+      # @param [String] filename of export file which will also be used for collection name
+      # @param [File] xml from contentDM export
+      # @return [File] description of returned object
       def ContentdmNewspaper.preingest_file(filename, xml)
         # set up output
         yaml = {}
@@ -53,12 +76,11 @@ module PagedMedia
         yaml['collection'] = {}
         yaml['collection']['title'] = [collectionname]
         yaml['collection']['visibility'] = 'open'
-        #yaml['collection']['ordered_members'] = {}
 
-        # each record is an issue
+        # parse each record as an issue
         issues = []
         xml.xpath('/metadata/record').each do |record|
-          issues << ContentdmNewspaper.add_newspaper(record)
+          issues << self.add_newspaper(record)
         end
 
         # add issues to collection

@@ -2,6 +2,10 @@ describe Collection do
   let(:collection) {FactoryGirl.create :collection}
   let(:complete_collection) {FactoryGirl.create :complete_collection}
 
+  after(:each) do
+    Collection.destroy_all
+  end
+    
   describe 'FactoryGirl' do
     describe ':colllection' do
       it 'is a Collection' do

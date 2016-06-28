@@ -21,6 +21,9 @@ describe PagedMedia::ObjectBehavior do
     so1.ordered_members = [so2]
     so2.member_of = [so1]
   end
+  after(:all) do
+    Collection.destroy_all
+  end
   let(:test_ancestor) { so0 }
   let(:children) { test_ancestor.ordered_members.to_a }
   let(:children_and_grandchildren) do
