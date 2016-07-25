@@ -2,3 +2,5 @@
 <div><%= container_presenter.metadata %></div>
 <%= render 'curation_concerns/base/table_of_contents' %>
 <div><%= container_presenter.related_files %></div>
+
+<%= render partial: 'member', collection: container_presenter.file_set_presenters %>

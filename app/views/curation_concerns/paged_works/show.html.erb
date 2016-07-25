@@ -15,7 +15,7 @@
 <% @members.each do |member| %>
   <%# model_name = member['has_model_ssim'][0].downcase %>
   <li>
-    <%= link_to member.title, main_app.curation_concerns_file_set_path(member) %>
+    <%= link_to member.title, member %>
     <%#= link_to member['title_tesim'].first.to_s, eval("main_app.curation_concerns_#{model_name}_path('" + member['id'] + "')") %>
   </li>
 <% end %>

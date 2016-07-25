@@ -1,13 +1,16 @@
 module PagedMedia
-  class ContainerPresenter
+  class ContainerPresenter < CurationConcerns::WorkShowPresenter
 
-    def initialize(container)
-      @container = container
-    end
+    delegate :title, to: :solr_document
+    delegate :container, to: :solr_document
 
-    def title
-      @container.title
-    end
+    # def initialize(container)
+    #   @container = container
+    # end
+    #
+    # def title
+    #   @container.title
+    # end
 
     def metadata
       # TODO Add more metadata fields when they are defined
