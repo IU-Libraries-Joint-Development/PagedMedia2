@@ -64,8 +64,6 @@ module PagedMedia
             file_type = pagefile_type
           when 'access'
             file_type = 'image'
-            # TODO - When ingest can handle multiple files, include actual image.
-            next
           else
             next
           end
