@@ -7,6 +7,7 @@ paged_work:
   visibility: open
   ordered_members:
   - container:
+      visibility: open
       title: Nested Container 1
       ordered_members:
       - file_set:
@@ -15,6 +16,7 @@ paged_work:
           - Nested File Set 1
           file: page01.png
       - container:
+          visibility: open
           title: Nested Container 2
           ordered_members:
           - file_set:
@@ -23,6 +25,7 @@ paged_work:
               - Nested File Set 2
               file: page02.png
   - container:
+      visibility: open
       title: Nested Container 3
       ordered_members:
       - file_set:

@@ -1,7 +1,10 @@
 # Behaviours for container model
 module PagedMedia::ContainerBehavior
   extend ActiveSupport::Concern
-  include Hydra::Works::WorkBehavior
+
+  included do
+    self.valid_child_concerns = [Container]
+  end
 
   # List all container titles
   #

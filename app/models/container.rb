@@ -1,4 +1,5 @@
 class Container < ActiveFedora::Base
+  include ::CurationConcerns::WorkBehavior
   include ::PagedMedia::ObjectBehavior
   include ::PagedMedia::ContainerBehavior
 

@@ -20,6 +20,7 @@ module PagedMedia
           c = {}
           if child.name == 'Div'
             c['container'] = {}
+            c['container']['visibility'] = 'open'
             c['container']['title'] = child['label']
             c['container']['ordered_members'] = VariationsScore.structure_to_array(basename, child)
             array << c

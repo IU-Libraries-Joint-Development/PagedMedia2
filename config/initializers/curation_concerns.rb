@@ -1,4 +1,6 @@
 CurationConcerns.configure do |config|
+  # Injected via `rails g curation_concerns:work Container`
+  config.register_curation_concern :container
   # Injected via `rails g curation_concerns:work Newspaper`
   config.register_curation_concern :newspaper
   # Injected via `rails g curation_concerns:work MusicalScore`
