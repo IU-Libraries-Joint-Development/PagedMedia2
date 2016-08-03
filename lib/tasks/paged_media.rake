@@ -46,7 +46,7 @@ namespace :paged_media do
 
   desc 'Run server (in wrappers)'
   task :server do
-    # Default development values
+    # Default development values when no arg given
     options = {
       fc_port: 8984,
       solr_port: 8983,
