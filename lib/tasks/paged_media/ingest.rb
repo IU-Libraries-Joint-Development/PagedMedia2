@@ -47,9 +47,14 @@ module PagedMedia
               val.each do |file_hash|
                 file_path = file_hash['file']['path'].to_s
                 file_type = file_hash['file']['type'].to_s
-                # TODO - Extend code to hanlde and "label" multiple files
                 file = open(file_path)
-                Hydra::Works::UploadFileToFileSet.call(object, file)
+                if file_type.eql?('thumbnail')
+                  Hydra::Works::AddFileToFileSet.call(object, file, :thumbnail)
+                elsif file_type.eql?('original')
+                  Hydra::Works::AddFileToFileSet.call(object, file, :original_file)
+                elsif file_type.eql?('extracted')
+                  Hydra::Works::AddFileToFileSet.call(object, file, :extracted_text)
+                end
               end
             else
               object.send("#{att}=", val)
