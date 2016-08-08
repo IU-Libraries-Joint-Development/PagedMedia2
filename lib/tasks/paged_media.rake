@@ -28,6 +28,17 @@ namespace :paged_media do
     end
   end
 
+  desc 'Run guard for responsive spec testing'
+  task :guard do
+    FcrepoWrapper.wrap(port: 8986, enable_jms: false) do |fc|
+      SolrWrapper.wrap(port: 8985, verbose: true) do |solr|
+        solr.with_collection name: 'hydra-test', dir: File.join(Rails.root, 'solr', 'config') do
+          sh('guard')
+        end
+      end
+    end
+  end
+
   desc 'Run pre-ingest'
   task :preingest => :environment do
     PagedMedia::PreIngest::Tasks.preingest
